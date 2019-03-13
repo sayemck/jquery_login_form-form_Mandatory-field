@@ -1,0 +1,144 @@
+<html>
+ 	<head>
+			<title> Validate empty fields </title>
+			
+			<style type="text/css">
+			body{ font-family:"Trebuchet Ms", verdana; width:450px;}
+			.error{color:red;}
+			#info{color:#0080000;font-weight:bold;}
+			</style>
+			
+			<script type="text/javascript" src="jquery-1.3.2.min.js"> </script>
+			<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+			$('#check').click(validate);
+			function validate()
+			{
+			var dataValid=true;
+			$('#info').html('');
+			$('.required').each(function()
+			{
+			var cur=$(this);
+			cur.next('span').remove();
+			if($.trim(cur.val())=='')
+			{
+			cur.after('<span class="error">Mandatory field</span>');
+			dataValid=false;
+			}
+			});	
+			if(dataValid)
+			{
+			$('#info').html('Validation Ok');
+			}
+			}
+			});
+			
+			
+			
+			</script>
+			<script type="text/javascript" src="jquery-1.3.2.min.js"> </script>
+			<script type="text/javascript">
+			$(document).ready(function()
+			{
+			$('#check').click(validate);
+			function validate()
+			{
+			var dataValid=true;
+			$('.required').each(function()
+			{
+			var cur=$(this);
+			cur.next('span').remove();
+			if($.trim(cur.val())=='')
+			{
+			cur.after('<span class="error">Mandatory field</span>');
+			dataValid=false;
+			}
+			});	
+			
+			if(!dataValid)return false;
+			
+			$('.number').each(function()
+			{
+			var cur=$(this);
+			cur.next().remove();
+			if(isNaN(cur.val()))
+			{
+			cur.after('<span class="error">Must be a number</span>');
+			dataValid=false;
+			}
+			});
+			
+			if(dataValid)
+			{
+			$('#info').html('Validation Ok');
+			}
+			}
+			});
+			</script>
+ 	</head>
+
+
+
+
+
+	<body>
+		<form style="border:dashed">
+			<fieldset>
+			<legend align="center" style="background:pink"> <strong> Pernonal Details </strong></legend>
+			<table>
+				<tbody>
+					<tr>
+						<td>Name:<font color="#FF0000">*</font></td>
+						<td> <input type="text" class="required"/> </td>
+						</tr>
+						
+						<tr>
+						<td> Address:<font color="#FF0000">*</font></td>
+						<td> <input type="text" class="required"/></td>
+						</tr>
+						
+						<tr>
+						<td> City: </td>
+						<td> <input type="text" class=""> </td>
+						</tr>
+						<tr>
+						<td> Country:<font color="#FF0000">*</font> </td>
+						<td> <input type="text" class="required" /> </td>
+						
+					</tr>
+				</tbody>
+			</table>
+			</fieldset>
+			
+			<br/>
+			<fieldset>
+			<legend align="center" style="background:#CC33CC"> <strong> Other Details </strong></legend>
+			<table>
+				<tbody>
+					<tr>
+					<tr>
+						<td>Age:<font color="#FF0000">*</font></td>
+						<td> <input type="text" class="required number"/> </td>
+						</tr>
+						
+						<tr>
+						<td> Monthly Expense:<font color="#FF0000">*</font></td>
+						<td> <input type="text" class="required number"/></td>
+					</tr>
+										
+					</tr>
+				</tbody>
+			</table>
+			</fieldset>
+						
+						<br/>
+						<span id="info"></span>
+						
+						<br/>						
+						<input type="button" value="Check" id="check"/>
+			</form>
+	</body>
+</html> 
+
